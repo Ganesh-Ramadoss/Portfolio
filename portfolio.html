@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ganesh | Portfolio</title>
+  <style>
+    :root {
+      --primary-color: #1e90ff;
+      --bg-color: #f0f4f8;
+      --text-color: #333;
+      --header-bg: #0f172a;
+      --card-bg: white;
+      --footer-bg: #1e293b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--header-bg);
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    nav a {
+      color: #38bdf8;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 4rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .about, .skills, .projects, .contact {
+      margin-bottom: 3rem;
+    }
+
+    .skills ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .skills li {
+      background: var(--card-bg);
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .project {
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .project h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .project a {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+    }
+
+    .contact input, .contact textarea {
+      padding: 0.75rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .contact button {
+      padding: 0.75rem;
+      border: none;
+      background: var(--primary-color);
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: var(--footer-bg);
+      color: #ccc;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    footer a {
+      color: #60a5fa;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav a {
+        display: block;
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ganesh Ramadoss</h1>
+    <p>Data Analyst | Web Developer</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+      Hi! I'm a web developer passionate about building user-friendly, scalable, and high-performing websites and applications.
+      With a background in computer science and a love for design, I bridge the gap between aesthetics and functionality.
+    </p>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Python</li>
+      <li>SQL,PL/SQL</li>
+      <li>Oracle Apex</li>
+      <li>Azure-104(Certified Azure Administrator)</li>
+      <li>HTMl,CSS</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project">
+        <h3>Portfolio Website</h3>
+        <p>A responsive personal portfolio built with HTML, CSS, and JS. It showcases projects, skills, and contact info.</p>
+        <a href="#">View Project →</a>
+      </div>
+      <div class="project">
+        <h3>Task Manager App</h3>
+        <p>Full-stack MERN app to create, update, and delete tasks with user authentication and dark mode.</p>
+        <a href="#">View Project →</a>
+      </div>
+      <div class="project">
+        <h3>Weather Dashboard</h3>
+        <p>Uses OpenWeatherMap API to display current weather and 5-day forecast by city name.</p>
+        <a href="#">View Project →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form action="#" method="POST">
+      <ul>Mobile : +91 8807-302930</ul>
+      <ul>Email  : gansram1309@gmail.com</ul>
+    </form>
+  </section>
+
+  <footer>
+    <p>Connect with me:</p>
+    <a href="https://www.linkedin.com/in/ganesh-ramadoss-355641217/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3Brj0rJ1sUSQiBx%2Bg3JqBTYg%3D%3D">LinkedIn</a>
+    <a href="https://github.com/Ganesh-Ramadoss">GitHub</a>
+    <a href="https://x.com/Ramadoss_GaneSh">Twitter</a>
+    <p>&copy; 2025 Ganesh Ramadoss. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
