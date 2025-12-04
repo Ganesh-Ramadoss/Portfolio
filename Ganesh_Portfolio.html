@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ganesh Ramadoss — Data Analyst</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* ---------- Basic layout & variables ---------- */
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --text:#0f172a;
+    }
+    [data-theme="dark"]{
+      --bg:#0b1220;
+      --card:#071226;
+      --muted:#94a3b8;
+      --accent:#60a5fa;
+      --text:#e6eef8;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* ---------- Header / Navbar ---------- */
+    .nav {
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 20px;
+    }
+    [data-theme="dark"] .nav{
+      background: linear-gradient(180deg, rgba(7,18,34,0.6), rgba(7,18,34,0.35));
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+    }
+    .brand .logo {
+      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;
+    }
+    .brand h1{font-size:1.05rem;margin:0}
+    nav a{
+      margin-left:18px;
+      text-decoration:none;color:var(--muted);font-weight:600;font-size:0.95rem;
+    }
+    nav a.active{ color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:6px; }
+
+    /* ---------- Layout containers ---------- */
+    .container{ max-width:1100px;margin:28px auto;padding:0 20px; }
+    .hero{
+      display:flex;gap:28px;align-items:center;
+      margin-bottom:26px;
+    }
+    .card{
+      background:var(--card); border-radius:12px; padding:20px; box-shadow: 0 8px 30px rgba(2,6,23,0.06);
+    }
+
+    .left { flex:1.1; padding:18px; }
+    .right { width:320px; }
+
+    .title { font-size:1.5rem; margin:0; }
+    .subtitle { color:var(--muted); margin-top:6px; margin-bottom:12px; }
+
+    .contact a{ color:var(--accent); text-decoration:none; font-weight:600 }
+
+    /* ---------- Skills list ---------- */
+    .skills { display:flex;flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .skill { padding:8px 12px; border-radius:999px; background:rgba(37,99,235,0.12); color:var(--accent); font-weight:600; font-size:0.85rem; }
+
+    /* ---------- Projects ---------- */
+    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-top:18px; }
+    .project {
+      display:flex; flex-direction:column; gap:10px; overflow:hidden;
+      border-radius:10px; padding:12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      min-height:230px;
+    }
+    .project img{ width:100%; height:140px; object-fit:cover; border-radius:8px; }
+
+    /* ---------- Chart area ---------- */
+    .chart-wrap{ padding:12px; background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent); border-radius:8px; }
+
+    /* ---------- Footer ---------- */
+    footer{ text-align:center; color:var(--muted); padding:28px 12px; font-size:0.9rem; }
+
+    /* ---------- Utilities ---------- */
+    .row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap;}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:8px; cursor:pointer; border:none;
+      background:var(--accent); color:white; font-weight:700; text-decoration:none;
+    }
+    .muted{ color:var(--muted) }
+
+    /* responsive */
+    @media (max-width:880px){
+      .hero{ flex-direction:column; align-items:stretch }
+      .right{ width:100% }
+      nav a{ margin-left:10px; font-size:0.9rem }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="nav card" role="banner">
+    <div class="brand">
+      <div class="logo">GR</div>
+      <div>
+        <h1 style="margin:0">Ganesh Ramadoss</h1>
+        <div style="font-size:0.85rem;color:var(--muted)">Data Analyst — Python • SQL • Power BI</div>
+      </div>
+    </div>
+
+    <nav aria-label="Primary" id="primaryNav">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a id="themeToggle" style="margin-left:14px; cursor:pointer;" title="Toggle dark mode">🌓</a>
+      <a class="btn" href="./Ganesh_Ramadoss.pdf" download style="margin-left:12px;">⬇️ Download Resume</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section id="about" class="hero card">
+      <div class="left">
+        <h2 class="title">Hi — I’m Ganesh Ramadoss</h2>
+        <p class="subtitle">Enthusiastic software developer & aspiring Data Analyst focused on data cleaning, visualization, and exploratory analysis using Python, SQL, Power BI and Excel.</p>
+
+        <div class="row" style="margin-top:10px">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" style="background:#111827" href="#contact">Contact Me</a>
+        </div>
+
+        <div style="margin-top:18px" class="card">
+          <strong>Current:</strong> Data Analyst Intern — Freshskills (May 2025 – Present)
+          <p class="muted" style="margin-top:6px">
+            Worked on Insurance Fraud analysis, Hearing Well-Being survey, and 2025 startup ecosystem analysis. Built dashboards, EDA and delivered actionable insights.
+          </p>
+          <strong>Previous:</strong> Software Engineer — Fresa Technologies (May 2024 – Oct 2025)
+          <p class="muted" style="margin-top:6px">
+            As a Software Engineer, I ensure smooth application performance by identifying and resolving bugs efficiently. I also manage and maintain the development environment using Oracle APEX to support seamless operations.
+          </p>
+        </div>
+        
+      </div>
+
+      <aside class="right card">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:28px">GR</div>
+          <div>
+            <div style="font-weight:800">Ganesh Ramadoss</div>
+            <div class="muted">Bengaluru, Karnataka</div>
+          </div>
+        </div>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+
+        <div><strong>Skills</strong>
+          <div class="skills" id="skills">
+            <div class="skill">Python</div><div class="skill">Pandas</div><div class="skill">NumPy</div>
+            <div class="skill">Matplotlib</div><div class="skill">Seaborn</div><div class="skill">SQL</div>
+            <div class="skill">Power BI</div><div class="skill">Excel</div><div class="skill">Oracle APEX</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card" style="margin-top:18px;">
+      <h3 style="margin:0 0 8px 0">Projects</h3>
+      <p class="muted" style="margin-top:6px">Interactive previews below — replace images and tweak chart data to match final analyses.</p>
+
+      <div class="projects" style="margin-top:14px;">
+        <!-- Project A -->
+        <article class="project card">
+          <img src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%23e6eef8'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23707caa' font-size='26'>Insurance Fraud — Placeholder Image</text></svg>" alt="Insurance Fraud">
+          <div style="flex:1">
+            <strong>Insurance Fraud Data Analysis</strong>
+            <p class="muted" style="margin:6px 0">Analyzed claims, detected anomalies and visualized fraud hotspots. Built recommendations to improve claim verification.</p>
+            <div class="chart-wrap">
+              <canvas id="chartFraud" height="120"></canvas>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project B -->
+        <article class="project card">
+          <img src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%23fff7ed'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23c4711c' font-size='26'>Hearing Well-being — Placeholder</text></svg>" alt="Hearing Survey">
+          <div style="flex:1">
+            <strong>Hearing Well-Being Survey</strong>
+            <p class="muted" style="margin:6px 0">Survey analysis across demographics with Power BI dashboards highlighting key influencing factors.</p>
+            <div class="chart-wrap">
+              <canvas id="chartSurvey" height="120"></canvas>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project C -->
+        <article class="project card">
+          <img src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%23eefcf3'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23665f3a' font-size='26'>2025 Startup Ecosystem — Placeholder</text></svg>" alt="Startup Ecosystem">
+          <div style="flex:1">
+            <strong>2025 Startup Ecosystem Analysis</strong>
+            <p class="muted" style="margin:6px 0">Trends in funding stages, sector performance and investor patterns. Interactive dashboards & recommendations for investors.</p>
+            <div class="chart-wrap">
+              <canvas id="chartStartup" height="120"></canvas>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="card" style="margin-top:18px;">
+      <h3 style="margin:0 0 6px 0">Education</h3>
+      <p style="margin:6px 0"><strong>MCA</strong> — Periyar Maniammai Institute of Science and Technology (CGPA 7.65) — May 2022</p>
+      <p style="margin:6px 0"><strong>BCA</strong> — Periyar Maniammai Institute of Science and Technology (CGPA 6.38) — May 2020</p>
+      <h4 style="margin-top:10px">Certifications</h4>
+      <ul>
+        <li>Data Analyst — Freshskills (2025)</li>
+        <li>Azure Administrator Associate (AZ-104) — Microsoft (2023)</li>
+        <li>Learn HTML — Programiz (2025)</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card" style="margin-top:18px;">
+      <h3 style="margin:0 0 6px 0">Contact</h3>
+      <p class="muted">I'm available for data analyst roles and freelance projects. Reach out for collaborations.</p>
+      <div style="margin-top:8px">
+        Mail : <a class="hover-tooltip" href="mailto:gansram1309@gmail.com" data-tooltip="Click to send mail">gansram1309@gmail.com</a>
+      <br>
+        Contact : 
+      <a class="hover-tooltip" href="tel:+918807302930" data-tooltip="Click to call">+91 88073 02930</a>
+      </div>
+    </section>
+
+  <footer>
+    <h3 style="margin:0 0 6px 0">Follow Me</h3>
+      <div style="margin-top:8px">
+        <a href="https://www.linkedin.com/in/ganesh-ramadoss-355641217/" target="_blank" rel="noopener noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+        alt="LinkedIn"
+        style="width:22px; vertical-align:middle; margin-right:6px; border-radius:50%;"></a>
+        <a  href="https://www.instagram.com/_gane.s.h_/"  target="_blank" rel="noopener noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/120px-Instagram_logo_2022.svg.png" 
+         alt="Instagram" 
+         style="width:22px; vertical-align:middle; margin-right:6px; border-radius:50%;"></a>
+      </div>
+    © 2025 Ganesh Ramadoss.All rights reserved. — Built with ❤️ • Data & clarity
+  </footer>
+  </main>
+
+
+
+  <!-- ---------- Script: small interactive bits & charts ---------- -->
+  <script>
+    // --- Theme toggle with persistence ---
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('theme');
+    if(stored === 'dark') document.documentElement.setAttribute('data-theme','dark');
+    function toggleTheme(){
+      const current = document.documentElement.getAttribute('data-theme');
+      if(current === 'dark'){
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme','light');
+      } else {
+        document.documentElement.setAttribute('data-theme','dark');
+        localStorage.setItem('theme','dark');
+      }
+    }
+    themeToggle.addEventListener('click', toggleTheme);
+
+    // --- Active nav link on scroll ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+    function onScroll(){
+      const scrollPos = window.scrollY + 120;
+      sections.forEach((sec,i) => {
+        if(!sec) return;
+        if(scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight){
+          navLinks.forEach(x=>x.classList.remove('active'));
+          navLinks[i].classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    // --- Simple Chart.js charts (replace with your real numbers) ---
+    const fraudCtx = document.getElementById('chartFraud').getContext('2d');
+    new Chart(fraudCtx, {
+      type:'bar',
+      data:{
+        labels:['Q1','Q2','Q3','Q4'],
+        datasets:[{
+          label:'Suspicious Claims (%)',
+          data:[3.2, 4.8, 6.1, 5.5],
+          borderRadius:6,
+          backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#2563eb'
+        }]
+      },
+      options:{responsive:true, plugins:{legend:{display:false}}}
+    });
+
+    const surveyCtx = document.getElementById('chartSurvey').getContext('2d');
+    new Chart(surveyCtx, {
+      type:'pie',
+      data:{
+        labels:['Age <30','30-45','45-60','60+'],
+        datasets:[{data:[28,35,22,15], backgroundColor:['#60a5fa','#34d399','#f59e0b','#f97316']}]
+      },
+      options:{responsive:true}
+    });
+
+    const startupCtx = document.getElementById('chartStartup').getContext('2d');
+    new Chart(startupCtx, {
+      type:'line',
+      data:{
+        labels:['2019','2020','2021','2022','2023','2024','2025'],
+        datasets:[{
+          label:'Funding (normalized index)',
+          data:[40,35,50,65,80,95,120],
+          tension:0.35,
+          fill:false,
+          borderWidth:2,
+          borderColor:getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#2563eb'
+        }]
+      },
+      options:{responsive:true, plugins:{legend:{display:false}}}
+    });
+
+    // Accessibility: keyboard focus for theme toggle
+    themeToggle.tabIndex = 0;
+    themeToggle.addEventListener('keypress', (e)=>{ if(e.key === 'Enter'){toggleTheme()} });
+
+  </script>
+</body>
+</html>
